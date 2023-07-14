@@ -4,23 +4,23 @@ import {Link} from 'react-router-dom'
 
 const Signup = () => {
 
-
-const [credentials, setcredentials] = useState({name:"",email:"",password:"",geolocation:""})
+const [credentials, setCredentials] = useState({name:"",email:"",password:"",geolocation:""})
 
 const handelSubmit = async(e) => {
   e.preventDefault();
-  const response = fetch("http://localhost:5000/api/createuser",{
+  const response = await fetch("http://localhost:5000/api/createuser",{
   method:'POST',
-  header:{
+  headers:{
     'Content-Type' : "application/json"
   },
   body:JSON.stringify(credentials)
   })
 } 
 
-const onChange = (e) =>{
-  setcredentials=({...credentials,[e.target.name]:e.target.value})
-}
+const onChange = (e) => {
+  setCredentials({ ...credentials, [e.target.name]: e.target.value });
+};
+
 
   return (
     <>
