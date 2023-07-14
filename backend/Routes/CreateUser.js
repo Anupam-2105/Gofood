@@ -30,7 +30,7 @@ async (req, res) => {
         //     email: req.body.email,
         //     location: req.body.location
         // })
-        const { name, password, email, geolocation } = req.body;
+        const { name, password, email, location } = req.body;
         await User.create({ name, password, email, location });
         res.json({ success: true })
     } catch (error) {
