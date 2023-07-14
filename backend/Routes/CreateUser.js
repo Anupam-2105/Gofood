@@ -11,7 +11,7 @@ body('name').isLength({min:5}),
 body('password','Incorrect Password').isLength({min:5}),
 async (req, res) => {
     
-    const errors = validationResult(res)
+    const errors = validationResult(req)
     if(!errors.isEmpty()){
         return res.status(400).json({errors:errors.array()})
     }
@@ -30,7 +30,7 @@ async (req, res) => {
         //     email: req.body.email,
         //     location: req.body.location
         // })
-        const { name, password, email, location } = req.body;
+        const { name, password, email, geolocation } = req.body;
         await User.create({ name, password, email, location });
         res.json({ success: true })
     } catch (error) {

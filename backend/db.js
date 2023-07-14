@@ -4,14 +4,9 @@ const mongoURI = 'mongodb+srv://gofood:qwer09876@cluster0.qki6fhu.mongodb.net/Go
 const mongoDB = async () => {
   try {
     await mongoose.connect(mongoURI);
-    console.log("Connected to MongoDB: Successful");
-
+    // console.log("Connected to MongoDB: Successful");
     const fetched_data = mongoose.connection.db.collection("Food_items");
     const data = await fetched_data.find({}).toArray();
-    console.log(456);
-
-    console.log("Retrieved data from MongoDB");
-
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
   }
