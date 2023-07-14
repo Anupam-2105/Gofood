@@ -1,9 +1,13 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
+const handelSubmit = () => {
 
+} 
 const Signup = () => {
   return (
     <>
-      <form>
+    <div className="container">
+      <form onSubmit={handelSubmit()}>
 
       <div className="mb-3">
     <label for="name" className="form-label">Name</label>
@@ -15,14 +19,15 @@ const Signup = () => {
     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
   </div>
-  
+
   <div className="mb-3">
     <label for="exampleInputPassword1" className="form-label">Password</label>
     <input type="password" className="form-control" id="exampleInputPassword1"/>
   </div>
-  <button type="submit" className="btn btn-primary">Submit</button>
+  <button type="submit" className="m-3 btn btn-success">Submit</button>
+  <Link to="/login" className='m-3 btn btn-danger'>Already a user</Link>
 </form>
-
+</div>
     </>
   )
 }
