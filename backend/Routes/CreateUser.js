@@ -5,6 +5,14 @@ const User = require('../models/User')
 const { body, validationResult } = require('express-validator')
 const { toHaveErrorMessage } = require('@testing-library/jest-dom/matchers')
 
+
+
+const bcrypt = require("bcryptjs")
+
+
+
+
+
 router.post("/createuser",
     body('email').isEmail(),
     body('name').isLength({ min: 5 }),
@@ -16,6 +24,14 @@ router.post("/createuser",
             return res.status(400).json({ errors: errors.array() })
         }
 
+
+
+        const salt = await bcrypt.genSalt(10)
+        let secPassword = await bcrypt.hash(req.body.password, salt)
+
+
+
+
         try {
             // await User.create({
             //     name:"Anupam", // req.body.name -> use it for getting data from user  
@@ -26,12 +42,12 @@ router.post("/createuser",
 
             // await User.create({
             //     name: req.body.name,
-            //     password: req.body.password,
+            //     password: secPassword,
             //     email: req.body.email,
             //     location: req.body.location
             // })
             const { name, password, email, location } = req.body;
-            await User.create({ name, password, email, location });
+            await User.create({ name, password:secPassword, email, location }); // just writing secPassword is wrong
             res.json({ success: true })
         } catch (error) {
             console.log(error)
