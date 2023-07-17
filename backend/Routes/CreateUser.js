@@ -8,9 +8,9 @@ const { toHaveErrorMessage } = require('@testing-library/jest-dom/matchers')
 
 
 const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 
-
-
+const jwtSecret = "qazxswedcvfrtgbnhyujmkiolp"
 
 
 router.post("/createuser",
@@ -75,10 +75,29 @@ router.post("/loginuser",
                 return res.status(400).json({ errors: "Try login with correct credentials" })
             }
 
-            if (req.body.password !== userData.password) {
-                return res.status(400).json({ errors: "Try login with correct credentials" })
+            // if (req.body.password !== userData.password) {
+            //     return res.status(400).json({ errors: "Try login with correct credentials" })
+            // }
+
+
+
+            const pwdCompare = await bcrypt.compare(req.body.password, userData.password)
+
+
+            if (!pwdCompare) {
+            return res.status(400).json({ errors: "Try login with correct credentials" })
             }
-            return res.json({ success: true })
+
+
+            const data = {
+                user: {
+                    id: userData.id
+                }
+            }
+
+            const authToken = jwt.sign(data, jwtSecret)
+
+            return res.json({ success: true, authToken : authToken })
         } catch (error) {
             console.log(error)
             res.json({ success: false })
