@@ -30,6 +30,8 @@ const Login = () => {
     }
 
     else{
+      localStorage.setItem("authToken",json.authToken)
+      console.log(localStorage.getItem("authToken"))
       navigate("/")
     }
   };
