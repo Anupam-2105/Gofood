@@ -12,7 +12,7 @@ const Card = (props) => {
           style={{ width: "18rem", maxHeight: "360px" }}
         >
           {/* Enter style within {{ "" : "" }} as ke-value pair Also everthing should be in camel case, ex-fontFamily*/}
-          <img src={props.imgSrc} className="card-img-top" alt="..." />
+          <img src={props.imgSrc} className="card-img-top" alt="..." style={{height:"200px", objectFit:"fill"}}/>
           <div className="card-body">
             <h5 className="card-title">{props.foodName}</h5>
             <div className="container w-100">
