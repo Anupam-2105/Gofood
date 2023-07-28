@@ -9,7 +9,6 @@ const Navbar = () => {
         navigate("/login")
     }
 
-
   return (
     <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-success position-sticky"
