@@ -1,6 +1,6 @@
 import './App.css';
 import Home from './screens/Home';
-import{
+import {
   BrowserRouter as Router,
   Routes,
   Route
@@ -13,16 +13,18 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
 import Signup from './screens/Signup';
 
 function App() {
-  return(
-    <Router>
-      <div>
-        <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route exact path='/login' element={<Login/>} />
-          <Route exact path='/signup' element={<Signup/>} />
-        </Routes>
-      </div>
-    </Router>
+  return (
+    <CartProvider>
+      <Router>
+        <div>
+          <Routes>
+            <Route exact path='/' element={<Home />} />
+            <Route exact path='/login' element={<Login />} />
+            <Route exact path='/signup' element={<Signup />} />
+          </Routes>
+        </div>
+      </Router>
+    </CartProvider>
   )
 }
 
